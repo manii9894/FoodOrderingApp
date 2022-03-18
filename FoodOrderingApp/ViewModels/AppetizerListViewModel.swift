@@ -12,7 +12,7 @@ import Combine
 final class AppetizerViewModel: ObservableObject {
     
     @EnvironmentObject var order: Order
-    @Published var appetizers: [Appetizer] = []
+    @Published var appetizers: [AppetizerVM] = []
     @Published var isLoading = false
     @Published var alertItem: AlertItem?
     private var cancellables = Set<AnyCancellable>()
@@ -31,7 +31,11 @@ final class AppetizerViewModel: ObservableObject {
                 }
             } receiveValue: { [unowned self] response in
                 self.isLoading = false
-                self.appetizers = response.request
+                var appetizers = [AppetizerVM]()
+                for obj in response.request {
+                    appetizers.append(AppetizerVM(appetizer: obj))
+                }
+                self.appetizers = appetizers
             }.store(in: &cancellables)
         
     }

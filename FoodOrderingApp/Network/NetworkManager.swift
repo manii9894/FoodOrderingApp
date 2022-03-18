@@ -23,7 +23,7 @@ class NetworkManager {
         - Precondition: `responseType` model should be match with the API response.
         - Returns: A model as the generic type is passed or and error.
      */
-    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, method: APIMethod, responseType: T.Type) -> Future<T, Error> {
+    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, method: APIMethod, responseType: T.Type, headers: [HttpHeader] = [.none]) -> Future<T, Error> {
         
         return Future<T, Error> { [weak self] promise in
             guard let self = self, let url = URL(string: endpoint.urlString) else {
@@ -32,8 +32,8 @@ class NetworkManager {
             
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
-            
-            URLSession.shared.dataTaskPublisher(for: request)
+            let urlRequest = self.setupHeaders(request: request, headers: headers)
+            URLSession.shared.dataTaskPublisher(for: urlRequest)
                 .tryMap { (data, response) -> Data in
                     guard let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
                         throw NetworkError.responseError
@@ -65,7 +65,7 @@ class NetworkManager {
         - Precondition: `responseType` model should be match with the API response.
         - Returns: A model as the generic type is passed or and error.
      */
-    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, imageData: [String: UIImage], responseType: T.Type) -> Future<T, Error> {
+    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, imageData: [String: UIImage], responseType: T.Type, headers: [HttpHeader] = [.none]) -> Future<T, Error> {
         
         return Future<T, Error> { [weak self] promise in
             guard let self = self, let url = URL(string: endpoint.urlString) else {
@@ -83,8 +83,9 @@ class NetworkManager {
                     request.addTextField(named: key, value: value as! String)
                 }
             }
+            let urlRequest = self.setupHeaders(request: request.asURLRequest(), headers: headers)
             
-            URLSession.shared.dataTaskPublisher(for: request.asURLRequest())
+            URLSession.shared.dataTaskPublisher(for: urlRequest)
                 .tryMap { (data, response) -> Data in
                     guard let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
                         throw NetworkError.responseError
@@ -108,6 +109,19 @@ class NetworkManager {
                 .store(in: &self.cancellables)
             
         }
+    }
+    
+    
+    private func setupHeaders(request: URLRequest, headers: [HttpHeader]) -> URLRequest {
+        
+        var urlRequest = request
+        headers.forEach { header in
+            if let header = header.getHeader() {
+                urlRequest.setValue(header.value, forHTTPHeaderField: header.field)
+            }
+        }
+        return urlRequest
+        
     }
     
 }

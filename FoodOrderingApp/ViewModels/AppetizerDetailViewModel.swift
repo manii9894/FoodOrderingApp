@@ -12,9 +12,9 @@ final class AppetizerDetailViewModel: ObservableObject {
     
     var order: Order
     @Published var alertItem: AlertItem?
-    var appetizer: Appetizer
+    var appetizer: AppetizerVM
     
-    init(order: Order, appetizer: Appetizer) {
+    init(order: Order, appetizer: AppetizerVM) {
         self.order = order
         self.appetizer = appetizer
     }

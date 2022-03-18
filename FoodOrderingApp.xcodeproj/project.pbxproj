@@ -30,10 +30,12 @@
 		B581E6DE27E34879007A284C /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6DD27E34879007A284C /* APIs.swift */; };
 		B581E6E027E34891007A284C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6DF27E34891007A284C /* Errors.swift */; };
 		B581E6E227E348B1007A284C /* MultipartFormDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6E127E348B1007A284C /* MultipartFormDataRequest.swift */; };
-		B581E6E427E348E5007A284C /* NSMutableData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6E327E348E5007A284C /* NSMutableData+Extension.swift */; };
 		B581E6E627E34D1B007A284C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6E527E34D1B007A284C /* ImageDownloader.swift */; };
 		B581E6E827E35F67007A284C /* RoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6E727E35F67007A284C /* RoundCorner.swift */; };
 		B581E6EB27E36155007A284C /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E6EA27E36155007A284C /* SplashScreen.swift */; };
+		B5AB8C6B27E4B8D70005B68B /* HttpHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB8C6A27E4B8D70005B68B /* HttpHeader.swift */; };
+		B5AB8C6D27E4BA3D0005B68B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB8C6C27E4BA3D0005B68B /* Constants.swift */; };
+		B5AB8C6F27E4BA960005B68B /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB8C6E27E4BA960005B68B /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,10 +63,12 @@
 		B581E6DD27E34879007A284C /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		B581E6DF27E34891007A284C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B581E6E127E348B1007A284C /* MultipartFormDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormDataRequest.swift; sourceTree = "<group>"; };
-		B581E6E327E348E5007A284C /* NSMutableData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableData+Extension.swift"; sourceTree = "<group>"; };
 		B581E6E527E34D1B007A284C /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		B581E6E727E35F67007A284C /* RoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorner.swift; sourceTree = "<group>"; };
 		B581E6EA27E36155007A284C /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		B5AB8C6A27E4B8D70005B68B /* HttpHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHeader.swift; sourceTree = "<group>"; };
+		B5AB8C6C27E4BA3D0005B68B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B5AB8C6E27E4BA960005B68B /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 				B581E6DF27E34891007A284C /* Errors.swift */,
 				B581E6E127E348B1007A284C /* MultipartFormDataRequest.swift */,
 				B581E6E527E34D1B007A284C /* ImageDownloader.swift */,
+				B5AB8C6A27E4B8D70005B68B /* HttpHeader.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -166,6 +171,8 @@
 				B581E6BE27E3470B007A284C /* Extension */,
 				B581E6B927E346A1007A284C /* CustomViews */,
 				B581E6BC27E346E3007A284C /* AlertItem.swift */,
+				B5AB8C6C27E4BA3D0005B68B /* Constants.swift */,
+				B5AB8C6E27E4BA960005B68B /* UserDefaults.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -199,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				B581E6BF27E3471A007A284C /* View+Extension.swift */,
-				B581E6E327E348E5007A284C /* NSMutableData+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -324,10 +330,11 @@
 				B581E6E627E34D1B007A284C /* ImageDownloader.swift in Sources */,
 				B581E6B627E3463C007A284C /* Appetizer.swift in Sources */,
 				B581E6E827E35F67007A284C /* RoundCorner.swift in Sources */,
+				B5AB8C6B27E4B8D70005B68B /* HttpHeader.swift in Sources */,
+				B5AB8C6D27E4BA3D0005B68B /* Constants.swift in Sources */,
 				B581E6DA27E347F8007A284C /* OrderView.swift in Sources */,
 				B581E6E227E348B1007A284C /* MultipartFormDataRequest.swift in Sources */,
 				B581E6DE27E34879007A284C /* APIs.swift in Sources */,
-				B581E6E427E348E5007A284C /* NSMutableData+Extension.swift in Sources */,
 				B581E6C227E347AD007A284C /* MainView.swift in Sources */,
 				B581E6D027E347E2007A284C /* AppetizerDetail.swift in Sources */,
 				B581E6BD27E346E3007A284C /* AlertItem.swift in Sources */,
@@ -340,6 +347,7 @@
 				B581E6CB27E347D9007A284C /* AppetizerCell.swift in Sources */,
 				B581E6EB27E36155007A284C /* SplashScreen.swift in Sources */,
 				B581E6D427E347EB007A284C /* CheckoutView.swift in Sources */,
+				B5AB8C6F27E4BA960005B68B /* UserDefaults.swift in Sources */,
 				B581E6C027E3471A007A284C /* View+Extension.swift in Sources */,
 				B581E6A027E343C7007A284C /* FoodOrderingAppApp.swift in Sources */,
 				B581E6C927E347D3007A284C /* AppetizerListView.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Appetizer: Identifiable, Decodable, Equatable {
+struct Appetizer: Decodable, Equatable {
     
     let id: Int
     let name: String
@@ -18,9 +18,64 @@ struct Appetizer: Identifiable, Decodable, Equatable {
     let carbs: Int
     let protein: Int
     
-    func getPriceString() -> String {
-        return String(format: "%.2f", price)
+}
+
+struct AppetizerVM: Identifiable, Equatable {
+    
+    let id: Int
+    let appetizer: Appetizer
+    
+    init(appetizer: Appetizer) {
+        id = appetizer.id
+        self.appetizer = appetizer
     }
+    
+    var getName: String {
+        get {
+            return appetizer.name
+        }
+    }
+    
+    var getPrice: Double {
+        get {
+            return appetizer.price
+        }
+    }
+    
+    var getImageURL: String {
+        get {
+            return appetizer.imageURL
+        }
+    }
+    
+    var getDescription: String {
+        get {
+            return appetizer.description
+        }
+    }
+    
+    var getCalories: Int {
+        get {
+            return appetizer.calories
+        }
+    }
+    
+    var getCarbs: Int {
+        get {
+            return appetizer.carbs
+        }
+    }
+    
+    var getProtein: Int {
+        get {
+            return appetizer.protein
+        }
+    }
+    
+    func getPriceString() -> String {
+        return String(format: "%.2f", appetizer.price)
+    }
+    
     
 }
 
@@ -33,12 +88,12 @@ struct MockData {
     
     static let appetizers = [sampleAppetizer, sampleAppetizer, sampleAppetizer]
     
-    static let sampleAppetizer = Appetizer(id: 0000002,
-                                           name: "Blackened Shrimp",
-                                           price: 6.99,
-                                           imageURL: "https://ibb.co/qjLLHNf",
-                                           description: "Seasoned shrimp from the depths of the Atlantic Ocean.",
-                                           calories: 450,
-                                           carbs: 3,
-                                           protein: 4)
+    static let sampleAppetizer = AppetizerVM(appetizer: Appetizer(id: 0000002,
+                                                                  name: "Blackened Shrimp",
+                                                                  price: 6.99,
+                                                                  imageURL: "https://ibb.co/qjLLHNf",
+                                                                  description: "Seasoned shrimp from the depths of the Atlantic Ocean.",
+                                                                  calories: 450,
+                                                                  carbs: 3,
+                                                                  protein: 4))
 }

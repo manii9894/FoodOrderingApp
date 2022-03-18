@@ -25,7 +25,7 @@ struct OrderView: View {
                 Section {
                     ForEach(viewModel.order.items) { item in
                         HStack {
-                            Text(item.name)
+                            Text(item.getName)
                             Spacer()
                             Text("$\(item.getPriceString())")
                         }

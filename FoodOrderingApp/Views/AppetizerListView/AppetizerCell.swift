@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppetizerCell: View {
     
-    let appetizer: Appetizer
+    let appetizer: AppetizerVM
     
     var body: some View {
         GeometryReader() { geometry in
@@ -20,11 +20,11 @@ struct AppetizerCell: View {
                     .opacity(0.2)
                     .cornerRadius(15)
                 VStack {
-                    AppetizerRemoteImage(urlString: appetizer.imageURL)
+                    AppetizerRemoteImage(urlString: appetizer.getImageURL)
                         .aspectRatio(contentMode: .fit)
                         .frame(minWidth: geometry.size.width, minHeight: 100)
                         .cornerRadius(8)
-                    Text(appetizer.name)
+                    Text(appetizer.getName)
                         .font(.system(size: 15, weight: .semibold, design: .default))
                         .fontWeight(.medium)
                         .frame(minWidth: geometry.size.width, minHeight: 30)

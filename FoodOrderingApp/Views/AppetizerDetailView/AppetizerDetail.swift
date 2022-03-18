@@ -66,7 +66,7 @@ struct AppetizerDetail: View {
                                 .aspectRatio(1, contentMode: .fit)
                             ItemCountView()
                             HStack(alignment: .top) {
-                                Text(viewModel.appetizer.name)
+                                Text(viewModel.appetizer.getName)
                                     .font(.system(size: 30, weight: .bold, design: .default))
                                     .foregroundColor(Color(.label))
                                     .lineLimit(nil)
@@ -78,11 +78,11 @@ struct AppetizerDetail: View {
                             HStack {
                                 ItemDetailView(imageName: "star", textString: "4.8")
                                 Spacer()
-                                ItemDetailView(imageName: "fire", textString: "\(viewModel.appetizer.calories) kcal")
+                                ItemDetailView(imageName: "fire", textString: "\(viewModel.appetizer.getCalories) kcal")
                                 Spacer()
                                 ItemDetailView(imageName: "clock", textString: "5-10 Min")
                             }
-                            Text(viewModel.appetizer.description)
+                            Text(viewModel.appetizer.getDescription)
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .topLeading)
                                 .font(.system(size: 20, weight: .regular, design: .default))
                                 .opacity(0.6)
