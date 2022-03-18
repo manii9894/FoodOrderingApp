@@ -7,7 +7,20 @@
 
 import Foundation
 
-fileprivate let baseURL = "https://seanallen-course-backend.herokuapp.com/"
+enum ServerEnvironment: String {
+    
+    case staging = "https://seanallen-course-backend.herokuapp.com/"
+    case production = ""
+    
+    static var baseUrl: String {
+        #if DEBUG
+        ServerEnvironment.staging.rawValue
+        #else
+        ServerEnvironment.production.rawValue
+        #endif
+    }
+    
+}
 
 enum Endpoint: String {
     
@@ -15,7 +28,7 @@ enum Endpoint: String {
     
     var urlString: String {
         get {
-            return baseURL + self.rawValue
+            return ServerEnvironment.baseUrl + self.rawValue
         }
     }
     
