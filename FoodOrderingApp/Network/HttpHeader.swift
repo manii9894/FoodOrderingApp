@@ -17,7 +17,6 @@ struct Header {
 enum HttpHeader: String {
     
     case authorization
-    case none
     
     func getHeader() -> Header? {
         
@@ -26,8 +25,6 @@ enum HttpHeader: String {
             if let token = UserDefaultsHandler.shared.userToken {
                 return Header(value: "Bearer \(token)", field: "Authorization")
             }
-            return nil
-        case .none:
             return nil
         }
         

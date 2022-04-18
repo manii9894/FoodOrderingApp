@@ -23,7 +23,7 @@ class NetworkManager {
         - Precondition: `responseType` model should be match with the API response.
         - Returns: A model as the generic type is passed or and error.
      */
-    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, method: APIMethod, responseType: T.Type, headers: [HttpHeader] = [.none]) -> Future<T, Error> {
+    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, method: APIMethod, responseType: T.Type, headers: [HttpHeader]? = nil) -> Future<T, Error> {
         
         return Future<T, Error> { [weak self] promise in
             guard let self = self, let url = URL(string: endpoint.urlString) else {
@@ -32,8 +32,13 @@ class NetworkManager {
             
             var request = URLRequest(url: url)
             request.httpMethod = method.rawValue
-            let urlRequest = self.setupHeaders(request: request, headers: headers)
-            URLSession.shared.dataTaskPublisher(for: urlRequest)
+            if let params = params {
+                request.httpBody = self.getData(from: params)
+            }
+            if let headers = headers {
+                request = self.setupHeaders(request: request, headers: headers)
+            }
+            URLSession.shared.dataTaskPublisher(for: request)
                 .tryMap { (data, response) -> Data in
                     guard let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
                         throw NetworkError.responseError
@@ -65,7 +70,7 @@ class NetworkManager {
         - Precondition: `responseType` model should be match with the API response.
         - Returns: A model as the generic type is passed or and error.
      */
-    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, imageData: [String: UIImage], responseType: T.Type, headers: [HttpHeader] = [.none]) -> Future<T, Error> {
+    func request<T: Decodable>(endpoint: Endpoint, params: [String: Any]? = nil, imageData: [String: UIImage], responseType: T.Type, headers: [HttpHeader]? = nil) -> Future<T, Error> {
         
         return Future<T, Error> { [weak self] promise in
             guard let self = self, let url = URL(string: endpoint.urlString) else {
@@ -83,7 +88,10 @@ class NetworkManager {
                     request.addTextField(named: key, value: value as! String)
                 }
             }
-            let urlRequest = self.setupHeaders(request: request.asURLRequest(), headers: headers)
+            var urlRequest = request.asURLRequest()
+            if let headers = headers {
+                urlRequest = self.setupHeaders(request: urlRequest, headers: headers)
+            }
             
             URLSession.shared.dataTaskPublisher(for: urlRequest)
                 .tryMap { (data, response) -> Data in
@@ -122,6 +130,10 @@ class NetworkManager {
         }
         return urlRequest
         
+    }
+    
+    private func getData(from params: [String: Any]) -> Data? {
+        return try? JSONSerialization.data(withJSONObject: params)
     }
     
 }
