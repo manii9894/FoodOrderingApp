@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B518E6ED28AB8C1000049113 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518E6EC28AB8C0F00049113 /* Network.swift */; };
 		B581E6A027E343C7007A284C /* FoodOrderingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B581E69F27E343C7007A284C /* FoodOrderingAppApp.swift */; };
 		B581E6A427E343C8007A284C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B581E6A327E343C8007A284C /* Assets.xcassets */; };
 		B581E6A727E343C8007A284C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B581E6A627E343C8007A284C /* Preview Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B518E6EC28AB8C0F00049113 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		B581E69C27E343C7007A284C /* FoodOrderingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodOrderingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B581E69F27E343C7007A284C /* FoodOrderingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOrderingAppApp.swift; sourceTree = "<group>"; };
 		B581E6A327E343C8007A284C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				B581E6E127E348B1007A284C /* MultipartFormDataRequest.swift */,
 				B581E6E527E34D1B007A284C /* ImageDownloader.swift */,
 				B5AB8C6A27E4B8D70005B68B /* HttpHeader.swift */,
+				B518E6EC28AB8C0F00049113 /* Network.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				B5AB8C6F27E4BA960005B68B /* UserDefaults.swift in Sources */,
 				B581E6C027E3471A007A284C /* View+Extension.swift in Sources */,
 				B581E6A027E343C7007A284C /* FoodOrderingAppApp.swift in Sources */,
+				B518E6ED28AB8C1000049113 /* Network.swift in Sources */,
 				B581E6C927E347D3007A284C /* AppetizerListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

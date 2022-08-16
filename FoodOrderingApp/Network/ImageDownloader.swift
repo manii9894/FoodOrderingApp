@@ -32,7 +32,7 @@ class ImageDownloader {
             URLSession.shared.dataTaskPublisher(for: url)
                 .tryMap { (data, response) -> Data in
                     guard let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
-                        throw NetworkError.responseError
+                        throw NetworkError.responseError(response.description)
                     }
                     return data
                 }
